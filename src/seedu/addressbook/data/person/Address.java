@@ -34,17 +34,20 @@ public class Address {
         createAddress(address);
     }
 
-    private void createAddress(String address) {
+    private void createAddress(String address) throws IllegalValueException{
         final int INDEX_BLOCK_ADDRESS = 0;
-        final int INDEX_STREET_ADDRESS = 0;
-        final int INDEX_UNIT_ADDRESS = 0;
-        final int INDEX_POSTCODE_ADDRESS = 0;
+        final int INDEX_STREET_ADDRESS = 1;
+        final int INDEX_UNIT_ADDRESS = 2;
+        final int INDEX_POSTCODE_ADDRESS = 3;
         String[] addressSegment = address.split(",");
+        if (addressSegment.length < 4){
+            throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
+        }
         
-        blockNumber = new Block(addressSegment[INDEX_BLOCK_ADDRESS]);
-        streetName = new Street(addressSegment[INDEX_STREET_ADDRESS]);
-        unitNumber = new Unit(addressSegment[INDEX_UNIT_ADDRESS]);
-        postalCodeNumber= new PostCode(addressSegment[INDEX_POSTCODE_ADDRESS]);
+        blockNumber = new Block(addressSegment[INDEX_BLOCK_ADDRESS].trim());
+        streetName = new Street(addressSegment[INDEX_STREET_ADDRESS].trim());
+        unitNumber = new Unit(addressSegment[INDEX_UNIT_ADDRESS].trim());
+        postalCodeNumber= new PostCode(addressSegment[INDEX_POSTCODE_ADDRESS].trim());
     }
 
     /**
