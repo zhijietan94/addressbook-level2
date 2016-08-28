@@ -13,6 +13,7 @@ public class Address {
     	+ "following format: a/BLOCK, STREET, UNIT, POSTAL_CODE";
     private static final String ADDRESS_VALIDATION_REGEX = ".+";
     
+    
     private Block blockNumber;
     private Street streetName;
     private Unit unitNumber;
@@ -34,7 +35,16 @@ public class Address {
     }
 
     private void createAddress(String address) {
-        //TODO: Set block, Street, unit, postcode
+        final int INDEX_BLOCK_ADDRESS = 0;
+        final int INDEX_STREET_ADDRESS = 0;
+        final int INDEX_UNIT_ADDRESS = 0;
+        final int INDEX_POSTCODE_ADDRESS = 0;
+        String[] addressSegment = address.split(",");
+        
+        blockNumber = new Block(addressSegment[INDEX_BLOCK_ADDRESS]);
+        streetName = new Street(addressSegment[INDEX_STREET_ADDRESS]);
+        unitNumber = new Unit(addressSegment[INDEX_UNIT_ADDRESS]);
+        postalCodeNumber= new PostCode(addressSegment[INDEX_POSTCODE_ADDRESS]);
     }
 
     /**
@@ -66,7 +76,7 @@ public class Address {
     }
 
     /**
-     * Returns true if a given string is a valid person email.
+     * Returns true if a given string is a valid person address.
      */
     public static boolean isValidAddress(String test) {
         return test.matches(ADDRESS_VALIDATION_REGEX);
@@ -89,12 +99,9 @@ public class Address {
         return getAddress().hashCode();
     }
 
-//    public String getAddress(){
-//	return toString();
-//    }
-    
     /**
-     * @return the address formatted by BLOCK, STREET, UNIT, POSTAL_CODE 
+     * @return the String representation of the address formatted 
+     * by BLOCK, STREET, UNIT, POSTAL_CODE 
      */
     public String getAddress() {
 	return this.toString();
