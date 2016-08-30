@@ -113,7 +113,7 @@ public class TextUi {
     /** Shows message(s) to the user */
     public void showToUser(String... message) {
         for (String m : message) {
-            out.print(Formatter.addLinePrefixAndLineSeparator(LS, LINE_PREFIX, m));
+            out.println(Formatter.addLinePrefixAndLineSeparator(LS, LINE_PREFIX, m));
         }
     }
 
