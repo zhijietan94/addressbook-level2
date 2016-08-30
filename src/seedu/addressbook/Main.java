@@ -9,6 +9,10 @@ import seedu.addressbook.parser.Parser;
 import seedu.addressbook.storage.StorageFile;
 import seedu.addressbook.ui.TextUi;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.Reader;
 import java.util.List;
 import java.util.Optional;
 
@@ -79,13 +83,25 @@ public class Main {
     private void runCommandLoopUntilExitCommand() {
         Command command;
         do {
-            String userCommandText = ui.getUserCommand();
-            command = new Parser().parseCommand(userCommandText);
-            CommandResult result = executeCommand(command);
-            recordResult(result);
-            ui.showResultToUser(result);
+            try {
+                String userCommandText = ui.getUserCommand();
+                command = new Parser().parseCommand(userCommandText);
+                isStorageFileExist();
+                CommandResult result = executeCommand(command);
+                recordResult(result);
+                ui.showResultToUser(result);
+            }
+            catch (FileNotFoundException fnfe){
+                throw new RuntimeException(fnfe);
+            }
 
         } while(!ExitCommand.isExit(command));
+    }
+
+    /** Checks if the storage file still exists in the directory */
+    private void isStorageFileExist() throws FileNotFoundException{
+        @SuppressWarnings("unused")
+        FileReader testFile = new FileReader(storage.path.toFile());
     }
 
     /** Updates the {@link #lastShownList} if the result contains a list of Persons. */
