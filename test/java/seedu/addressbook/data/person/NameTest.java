@@ -44,6 +44,7 @@ public class NameTest {
     public void name_is_subset_superset_returns_true() throws IllegalValueException {
         assertTrue(name.isSimilar(new Name("John Smith")));
         assertTrue(name.isSimilar(new Name("John K A Smith")));
+        assertTrue(name.isSimilar(new Name("Smith John K")));
         assertFalse(name.isSimilar(new Name("John A Smith")));
     }
     
