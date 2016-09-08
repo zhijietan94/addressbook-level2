@@ -44,6 +44,21 @@ public class Name {
         return Arrays.asList(fullName.split("\\s+"));
     }
 
+    /**
+     * Returns true of the other name is very similar to this name.
+     * Two names are considered similar if:
+     *  -Exactly the same
+     *  
+     */
+    public boolean isSimilar(Name other){
+        if (fullName.equals(other.toString())){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    
     @Override
     public String toString() {
         return fullName;
