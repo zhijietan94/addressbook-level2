@@ -3,7 +3,9 @@ package seedu.addressbook.data.person;
 import seedu.addressbook.data.exception.IllegalValueException;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Represents a Person's name in the address book.
@@ -58,7 +60,13 @@ public class Name {
         if (this.equals(other)){
             return true;
         }
-        else if (this.toString().equalsIgnoreCase(other.toString())) {
+        
+        String currName = this.toString().toLowerCase();
+        String testName = other.toString().toLowerCase();
+        if (currName.equals(testName)) {
+            return true;
+        }
+        else if (isSubset(currName, testName) || isSubset(testName, currName)){
             return true;
         }
         else {
@@ -66,6 +74,24 @@ public class Name {
         }
     }
     
+    /**
+     * Returns true if nameTwo is a proper subset of nameOne.
+     * and false if otherwise.
+     */
+    private boolean isSubset(String nameOne, String nameTwo) {
+        final Set<String> testSet = new HashSet<>();
+        for (String item : nameOne.split(" ")) {
+            testSet.add(item);
+        }
+        for (String item : nameTwo.split(" ")) {
+            final boolean wordDoesNotExist = testSet.add(item);
+            if (wordDoesNotExist) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     @Override
     public String toString() {
         return fullName;

@@ -40,6 +40,12 @@ public class NameTest {
         name.isSimilar(new Name(nullString));
     }
     
+    @Test
+    public void name_is_subset_superset_returns_true() throws IllegalValueException {
+        assertTrue(name.isSimilar(new Name("John Smith")));
+        assertTrue(name.isSimilar(new Name("John K A Smith")));
+        assertFalse(name.isSimilar(new Name("John A Smith")));
+    }
     
     //End of testing of isSimilar method
 }
