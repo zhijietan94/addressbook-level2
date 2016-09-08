@@ -51,10 +51,10 @@ public class Name {
      *  
      */
     public boolean isSimilar(Name other){
-        if (fullName.equals(other.toString())){
+        if (this.equals(other)){
             return true;
         }
-        else if (fullName.toLowerCase().equals(other.toString().toLowerCase())) {
+        else if (this.toString().equalsIgnoreCase(other.toString())) {
             return true;
         }
         else {
