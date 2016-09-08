@@ -40,11 +40,26 @@ public class NameTest {
         name.isSimilar(new Name(nullString));
     }
     
+    @Test (expected= IllegalValueException.class)
+    public void name_string_with_comma_throws_exception() throws IllegalValueException {
+        name.isSimilar(new Name("John, Smith"));
+    }
+    
     @Test
     public void name_is_subset_superset_returns_true() throws IllegalValueException {
+        //Other name is a subset
         assertTrue(name.isSimilar(new Name("John Smith")));
+        //Other name is a subset in different ordering
+        assertTrue(name.isSimilar(new Name("Smith K"))); 
+        
+        //Other name is a superset
         assertTrue(name.isSimilar(new Name("John K A Smith")));
-        assertTrue(name.isSimilar(new Name("Smith John K")));
+        //Other name is a superset in a different ordering
+        assertTrue(name.isSimilar(new Name("Smith K John A")));     
+    }
+    
+    @Test
+    public void diff_name_returns_false() throws IllegalValueException {
         assertFalse(name.isSimilar(new Name("John A Smith")));
     }
     
