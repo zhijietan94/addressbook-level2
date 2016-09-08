@@ -48,7 +48,7 @@ public class Name {
      * Returns true of the other name is very similar to this name.
      * Two names are considered similar if:
      *  -Exactly the same
-     *  
+     *  -Differ only by cases
      */
     public boolean isSimilar(Name other){
         if (other == null){
