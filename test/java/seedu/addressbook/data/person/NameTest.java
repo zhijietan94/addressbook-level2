@@ -20,5 +20,10 @@ public class NameTest {
     public void same_name_same_case_returns_true() throws IllegalValueException {
         assertTrue(name.isSimilar(new Name("John K Smith")));
     }
+    
+    @Test
+    public void same_name_diff_case_returns_true() throws IllegalValueException {
+        assertTrue(name.isSimilar(new Name("john k smith")));
+    }
 
 }

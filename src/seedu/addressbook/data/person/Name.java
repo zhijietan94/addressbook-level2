@@ -54,6 +54,9 @@ public class Name {
         if (fullName.equals(other.toString())){
             return true;
         }
+        else if (fullName.toLowerCase().equals(other.toString().toLowerCase())) {
+            return true;
+        }
         else {
             return false;
         }
